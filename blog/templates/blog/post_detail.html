@@ -1,0 +1,28 @@
+{%extends "blog/base.html" %}
+<!--front end ka dekh lena baad me apna  connection set krdia hai maine -->
+{%block content%}
+
+	
+			<article class="media content-section">
+				  <div class="media-body">
+				    <div class="article-metadata">
+				      <img class="rounded-circle account-img" src="{{post.author.profile.image.url}}">
+				      <a class="mr-2" href="{% url 'post-detail' post.id %}">{{ post.author }}</a>
+				      <small class="text-muted">{{ post.date_posted|date:"F d,Y"}}</small>
+				    </div>
+				 
+
+				    <h2><a class="article-title" href="#">{{ post.title }}</a></h2>
+				    <p class="article-content">{{ post.content }}</p>
+				  </div>
+				     {%if user == post.author %}
+						<div>
+							<a  class="btn btn-secondary mt-1 mb-1" href="{%url 'post-update' post.id%}">Update Post</a>
+							<a  class="btn btn-danger mt-1 mb-1" href="{%url 'post-delete' post.id%}">Delete Post</a>
+						</div>
+					{%endif%}
+
+			</article>
+			
+
+{%endblock content%}
